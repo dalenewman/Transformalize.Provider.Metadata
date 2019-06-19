@@ -8,7 +8,6 @@ using System.Collections.Generic;
 using Transformalize.Providers.File.Transforms;
 using Transformalize.Transform.Metadata;
 using Transformalize.Configuration;
-using System.Linq;
 
 namespace Test.Unit {
    [TestClass]
@@ -19,8 +18,7 @@ namespace Test.Unit {
    <entities>
       <add name='test'>
          <rows>
-            <add file='files\gavin.jpg' />
-            <add file='C:\Users\dnewman\Downloads\C400433142_Skip_20190506114902.jpg' />
+            <add file='files\IMG-2884.JPG' />
          </rows>
          <fields>
             <add name='file' />
@@ -34,11 +32,10 @@ namespace Test.Unit {
                         <add field='bytes' />
                      </parameters>
                      <fields>
-                        <add name='Megapixels' />
-                        <add name='GPS Latitude' class='GPS' type='double' />
-                        <add name='GPS Longitude' class='GPS' type='double' />
                         <add name='Make' />
                         <add name='Model' />
+                        <add name='GPS Latitude' class='GPS' type='double' />
+                        <add name='GPS Longitude' class='GPS' type='double' />
                      </fields>
                   </add>
                </transforms>
@@ -58,8 +55,13 @@ namespace Test.Unit {
          using (var outer = new ConfigurationContainer(transforms).CreateScope(cfg, logger)) {
             var process = outer.Resolve<Process>();
             using(var inner = new Container(transforms).CreateScope(process, logger)) {
-               var output = inner.Resolve<IProcessController>().Read().ToArray();
-               Assert.AreEqual(2, output.Length);
+               inner.Resolve<IProcessController>().Execute();
+               var rows = process.Entities[0].Rows;
+               Assert.AreEqual(1, rows.Count);
+               Assert.AreEqual("Apple", rows[0]["Make"]);
+               Assert.AreEqual("iPhone XS", rows[0]["Model"]);
+               Assert.AreEqual((double)42.080733, Math.Round((double) rows[0]["GPS Latitude"],6));
+               Assert.AreEqual((double)-86.481728, Math.Round((double) rows[0]["GPS Longitude"],6));
             }
          }
          

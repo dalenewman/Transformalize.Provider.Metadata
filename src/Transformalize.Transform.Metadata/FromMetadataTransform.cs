@@ -14,6 +14,7 @@ namespace Transformalize.Transform.Metadata {
       private readonly Field _input;
       private readonly Field[] _output;
       private readonly Dictionary<string, Dictionary<string, Field>> _lookup = new Dictionary<string, Dictionary<string, Field>>(StringComparer.OrdinalIgnoreCase);
+      private readonly bool _gpsCheck;
 
       public FromMetadataTransform(IContext context = null) : base(context, null) {
          if (IsMissingContext()) {
@@ -35,6 +36,7 @@ namespace Transformalize.Transform.Metadata {
 
          _input = SingleInputForMultipleOutput();
          _output = MultipleOutput();
+         _gpsCheck = _output.Any(f => f.Name.StartsWith("GPS", StringComparison.OrdinalIgnoreCase) && f.Type == "double");
 
          foreach (var field in _output) {
             if (_lookup.ContainsKey(field.Class)) {
@@ -53,6 +55,7 @@ namespace Transformalize.Transform.Metadata {
       }
 
       public override IRow Operate(IRow row) {
+
          var bytes = (byte[])row[_input];
          IReadOnlyList<MetadataExtractor.Directory> directories = null;
 
@@ -63,30 +66,41 @@ namespace Transformalize.Transform.Metadata {
                Context.Error(ex.Message);
                Context.Debug(() => ex.StackTrace);
             }
-
          }
+
          if (directories != null) {
+
             foreach (var directory in directories) {
-               Context.Debug(() => "Directory: " + directory.Name);
+
                var lookup = _lookup.ContainsKey(directory.Name) ? _lookup[directory.Name] : _lookup[string.Empty];
+
                foreach (var tag in directory.Tags) {
-                  Context.Debug(() => " Tag: " + tag.Name + ", Value:" + tag.Description);
+                  
+                  // Context.Debug(() => $"Tag:{tag.Name},Value:{tag.Description}");
+
                   if (lookup.ContainsKey(tag.Name)) {
+
                      var field = lookup[tag.Name];
-                     // convenience for handling GPS which is normally stored in two fields, and in degrees, minutes, seconds 
-                     if (directory.Name == "GPS" && field.Type == "double" && directory is GpsDirectory gps) {
+
+                     /* GPS coordinates are stored in two fields, a direction (e.g. N,W), 
+                        and a string in degrees, minutes, and seconds format */
+                     if (directory.Name=="GPS" && _gpsCheck && field.Type == "double" && directory is GpsDirectory gps) {
                         var geo = gps.GetGeoLocation();
-                        if (tag.Name == "GPS Latitude") {
-                           row[field] = geo.Latitude;
-                        } else if (tag.Name == "GPS Longitude") {
-                           row[field] = geo.Longitude;
-                        } else {
-                           row[field] = tag.Description;
+                        switch (tag.Name) {
+                           case "GPS Latitude":
+                              row[field] = geo.Latitude;
+                              break;
+                           case "GPS Longitude":
+                              row[field] = geo.Longitude;
+                              break;
+                           default:
+                              row[field] = tag.Description;
+                              break;
                         }
                      } else {
                         row[field] = tag.Description;
                      }
-                     Context.Debug(() => $"  Storing {tag.Description} into {field.Alias}.");
+
                   }
                }
             }
