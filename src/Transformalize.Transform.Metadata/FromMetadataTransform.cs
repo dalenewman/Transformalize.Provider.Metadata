@@ -73,6 +73,7 @@ namespace Transformalize.Transform.Metadata {
                   Context.Debug(() => " Tag: " + tag.Name + ", Value:" + tag.Description);
                   if (lookup.ContainsKey(tag.Name)) {
                      var field = lookup[tag.Name];
+                     // convenience for handling GPS which is normally stored in two fields, and in degrees, minutes, seconds 
                      if (directory.Name == "GPS" && field.Type == "double" && directory is GpsDirectory gps) {
                         var geo = gps.GetGeoLocation();
                         if (tag.Name == "GPS Latitude") {
