@@ -6,9 +6,8 @@ using System.IO;
 using System.Linq;
 using Transformalize.Configuration;
 using Transformalize.Contracts;
-using Transformalize.Transforms;
 
-namespace Transformalize.Transform.Metadata {
+namespace Transformalize.Transforms.Metadata {
    public class FromMetadataTransform : BaseTransform {
 
       private readonly Field _input;

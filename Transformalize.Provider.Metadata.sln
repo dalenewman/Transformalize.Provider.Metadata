@@ -12,6 +12,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		README.md = README.md
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Transformalize.Transform.Metadata.Autofac", "src\Transformalize.Transform.Metadata.Autofac\Transformalize.Transform.Metadata.Autofac.csproj", "{40B92A41-F3F6-465E-9236-A883FA4CE80B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "nuget", "nuget", "{ECC9B6A2-9514-4BD7-820A-1FB0CB46828E}"
+	ProjectSection(SolutionItems) = preProject
+		nuget\nuget.bat = nuget\nuget.bat
+		nuget\Transformalize.Transform.Metadata.Autofac.nuspec = nuget\Transformalize.Transform.Metadata.Autofac.nuspec
+		nuget\Transformalize.Transform.Metadata.nuspec = nuget\Transformalize.Transform.Metadata.nuspec
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -26,9 +35,16 @@ Global
 		{A6B9329B-48F5-4B4A-A731-AE426D5F1449}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A6B9329B-48F5-4B4A-A731-AE426D5F1449}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A6B9329B-48F5-4B4A-A731-AE426D5F1449}.Release|Any CPU.Build.0 = Release|Any CPU
+		{40B92A41-F3F6-465E-9236-A883FA4CE80B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{40B92A41-F3F6-465E-9236-A883FA4CE80B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{40B92A41-F3F6-465E-9236-A883FA4CE80B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{40B92A41-F3F6-465E-9236-A883FA4CE80B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{ECC9B6A2-9514-4BD7-820A-1FB0CB46828E} = {7A8746B9-17AF-4F2C-929A-94E9C0109E2A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {4E848B63-A482-4417-A213-BFCC4B33DD15}

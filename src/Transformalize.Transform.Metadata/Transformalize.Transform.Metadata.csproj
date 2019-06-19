@@ -7,7 +7,7 @@
     <ProjectGuid>{697DC884-DEBE-4B84-A4DD-B290D764F749}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Transformalize.Transform.Metadata</RootNamespace>
+    <RootNamespace>Transformalize.Transforms.Metadata</RootNamespace>
     <AssemblyName>Transformalize.Transform.Metadata</AssemblyName>
     <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>

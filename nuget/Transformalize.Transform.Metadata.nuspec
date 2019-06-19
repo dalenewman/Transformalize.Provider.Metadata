@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<package>
+  <metadata>
+    <id>Transformalize.Transform.Metadata</id>
+    <version>0.6.9-beta</version>
+    <title>Getting metadata from files (images, videos, etc)</title>
+    <authors>Dale Newman</authors>
+    <owners>Dale Newman</owners>
+    <projectUrl>https://github.com/dalenewman/Transformalize</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Metadata Transform(s) for Transformalize</description>
+    <releaseNotes></releaseNotes>
+    <copyright>Copyright 2013-2019</copyright>
+    <tags>etl</tags>
+    <dependencies>
+      <group targetFramework="net462">
+        <dependency id="Transformalize" version="0.6.9-beta" />
+        <dependency id="MetadataExtractor" version="2.1.0" />
+      </group>
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="..\src\Transformalize.Transform.Metadata\bin\Release\Transformalize.Transform.Metadata.dll" target="lib\net462\Transformalize.Transform.Metadata.dll" />
+  </files>
+</package>
