@@ -6,7 +6,7 @@ using Transformalize.Containers.Autofac;
 using Autofac;
 using System.Collections.Generic;
 using Transformalize.Providers.File.Transforms;
-using Transformalize.Transform.Metadata;
+using Transformalize.Transforms.Metadata;
 using Transformalize.Configuration;
 
 namespace Test.Unit {

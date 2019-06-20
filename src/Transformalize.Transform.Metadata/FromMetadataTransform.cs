@@ -62,7 +62,7 @@ namespace Transformalize.Transforms.Metadata {
             try {
                directories = ImageMetadataReader.ReadMetadata(stream);
             } catch (ImageProcessingException ex) {
-               Context.Error(ex.Message);
+               Context.Warn(ex.Message);
                Context.Debug(() => ex.StackTrace);
             }
          }

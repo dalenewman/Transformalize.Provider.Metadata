@@ -78,9 +78,9 @@
 
 if exist %25f%25 copy /Y "$(TargetDir)MetadataExtractor.dll" "%25f%25"
 if exist %25f%25 copy /Y "$(TargetDir)XmpCore.dll" "%25f%25"
-if exist %25f%25 copy /Y "$(TargetDir)Transformalize.Transform.Metadata.dll" "%2525f%2525"
-if exist %25f%25 copy /Y "$(TargetDir)Transformalize.Transform.Metadata.pdb" "%2525f%2525"
-if exist %25f%25 copy /Y "$(TargetDir)Transformalize.Transform.Metadata.Autofac.dll" "%2525f%2525"
-if exist %25f%25 copy /Y "$(TargetDir)Transformalize.Transform.Metadata.Autofac.pdb" "%2525f%2525"</PostBuildEvent>
+if exist %25f%25 copy /Y "$(TargetDir)Transformalize.Transform.Metadata.dll" "%25f%25"
+if exist %25f%25 copy /Y "$(TargetDir)Transformalize.Transform.Metadata.pdb" "%25f%25"
+if exist %25f%25 copy /Y "$(TargetDir)Transformalize.Transform.Metadata.Autofac.dll" "%25f%25"
+if exist %25f%25 copy /Y "$(TargetDir)Transformalize.Transform.Metadata.Autofac.pdb" "%25f%25"</PostBuildEvent>
   </PropertyGroup>
 </Project>
