@@ -74,23 +74,23 @@ namespace Transformalize.Transforms.Metadata {
                var lookup = _lookup.ContainsKey(directory.Name) ? _lookup[directory.Name] : _lookup[string.Empty];
 
                foreach (var tag in directory.Tags) {
-                  
+
                   // Context.Debug(() => $"Tag:{tag.Name},Value:{tag.Description}");
 
-                  if (lookup.ContainsKey(tag.Name)) {
+                  if (tag.HasName && lookup.ContainsKey(tag.Name)) {
 
                      var field = lookup[tag.Name];
 
                      /* GPS coordinates are stored in two fields, a direction (e.g. N,W), 
                         and a string in degrees, minutes, and seconds format */
-                     if (directory.Name=="GPS" && _gpsCheck && field.Type == "double" && directory is GpsDirectory gps) {
+                     if (directory.Name == "GPS" && _gpsCheck && field.Type == "double" && directory is GpsDirectory gps) {
                         var geo = gps.GetGeoLocation();
                         switch (tag.Name) {
                            case "GPS Latitude":
-                              row[field] = geo.Latitude;
+                              row[field] = geo == null ? 0 : geo.Latitude;
                               break;
                            case "GPS Longitude":
-                              row[field] = geo.Longitude;
+                              row[field] = geo == null ? 0 : geo.Longitude;
                               break;
                            default:
                               row[field] = tag.Description;
