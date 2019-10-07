@@ -2,7 +2,7 @@
 <package>
   <metadata>
     <id>Transformalize.Transform.Metadata.Autofac</id>
-    <version>0.6.9-beta</version>
+    <version>0.6.19-beta</version>
     <title>Metadata for Transformalize Autofac Module</title>
     <authors>Dale Newman</authors>
     <owners>Dale Newman</owners>
@@ -15,7 +15,7 @@
     <dependencies>
       <group targetFramework="net462">
         <dependency id="Autofac" version="4.6.2" />
-        <dependency id="Transformalize.Transform.Metadata" version="0.6.9-beta" />
+        <dependency id="Transformalize.Transform.Metadata" version="0.6.19-beta" />
         <dependency id="Cfg-NET.Shorthand" version="0.2.11" />
       </group>
     </dependencies>
